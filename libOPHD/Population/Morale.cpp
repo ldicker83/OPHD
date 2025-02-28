@@ -41,6 +41,12 @@ void Morale::journalMoraleChange(MoraleChangeEntry entry)
 }
 
 
+void Morale::journalMoraleChanges(const std::vector<MoraleChangeEntry>& entries)
+{
+	mMoraleChangeJournal.insert(mMoraleChangeJournal.end(), entries.begin(), entries.end());
+}
+
+
 const std::vector<MoraleChangeEntry>& Morale::moraleChangeJournal() const
 {
 	return mMoraleChangeJournal;
