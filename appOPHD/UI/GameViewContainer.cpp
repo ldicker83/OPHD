@@ -12,9 +12,3 @@ void GameViewContainer::update()
 {
 	UIContainer::update();
 }
-
-
-void GameViewContainer::onLoadGame(GameState& gameState)
-{
-	mFileIoDialog.updateFileSaveDelegate(gameState.fileSaveDelegate());
-}

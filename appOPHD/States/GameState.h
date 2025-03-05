@@ -2,6 +2,7 @@
 
 #include "Planet.h"
 #include "../UI/FileIo.h"
+#include "../UI/GameViewContainer.h"
 
 #include <NAS2D/State.h>
 #include <NAS2D/Math/Point.h>
@@ -30,7 +31,9 @@ public:
 	State* update() override;
 
 	MainReportsUiState& mainReportsState() { return *mMainReportsState; }
-	FileIo& fileIoDialog() { return mFileIoDialog; }
+	FileIo& fileIoDialog() { return mGameViewContainer.fileIoDialog(); }
+	FileIo::FileLoadDelegate fileLoadDelegate() { return {this, &GameState::onLoadGame}; }
+	FileIo::FileSaveDelegate fileSaveDelegate() { return {this, &GameState::onSaveGame}; }
 
 protected:
 	void initializeGameState();
@@ -58,5 +61,5 @@ private:
 	Wrapper* mActiveState = nullptr;
 	NAS2D::State* mReturnState = this;
 	NAS2D::Fade mFade;
-	FileIo mFileIoDialog;
+	GameViewContainer mGameViewContainer;
 };

@@ -207,6 +207,7 @@ void FileIo::onFileIo()
 	mFileName.text("");
 	mFileName.resetCursorPosition();
 	mFileOperation.enabled(false);
+	hide();
 }
 
 
