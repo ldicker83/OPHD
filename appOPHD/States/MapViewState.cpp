@@ -191,6 +191,7 @@ MapViewState::MapViewState(GameState& gameState, const std::string& savegame) :
 	mConnections{"ui/structures.png", constants::StructureIconSize, constants::MarginTight},
 	mGameViewContainer{gameState.gameViewContainer()},
 	mFileIoDialog{mGameViewContainer.fileIoDialog()},
+	mGameOptionsDialog{mGameViewContainer.gameOptionsDialog()},
 	mPopulationPanel{mPopulation, mPopulationPool, mMorale},
 	mResourceInfoBar{mResourcesCount, mPopulation, mMorale, mFood},
 	mRobotDeploymentSummary{mRobotPool}
@@ -214,6 +215,7 @@ MapViewState::MapViewState(GameState& gameState, const Planet::Attributes& plane
 	mConnections{"ui/structures.png", constants::StructureIconSize, constants::MarginTight},
 	mGameViewContainer{gameState.gameViewContainer()},
 	mFileIoDialog{mGameViewContainer.fileIoDialog()},
+	mGameOptionsDialog{mGameViewContainer.gameOptionsDialog()},
 	mPopulationPanel{mPopulation, mPopulationPool, mMorale},
 	mPoliceOverlays{static_cast<std::vector<Tile*>::size_type>(mTileMap->maxDepth() + 1)},
 	mResourceInfoBar{mResourcesCount, mPopulation, mMorale, mFood},

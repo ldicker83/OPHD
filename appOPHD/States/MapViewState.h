@@ -369,7 +369,7 @@ private:
 	GameViewContainer& mGameViewContainer;
 	FileIo& mFileIoDialog;
 	GameOverDialog mGameOverDialog;
-	GameOptionsDialog mGameOptionsDialog;
+	GameOptionsDialog& mGameOptionsDialog;
 	MajorEventAnnouncement mAnnouncement;
 	MineOperationsWindow mMineOperationsWindow;
 	NotificationArea mNotificationArea;
