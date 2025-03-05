@@ -254,6 +254,7 @@
     <ClCompile Include="UI\FileIo.cpp" />
     <ClCompile Include="UI\GameOptionsDialog.cpp" />
     <ClCompile Include="UI\GameOverDialog.cpp" />
+    <ClCompile Include="UI\GameViewContainer.cpp" />
     <ClCompile Include="UI\IconGrid.cpp" />
     <ClCompile Include="UI\MajorEventAnnouncement.cpp" />
     <ClCompile Include="UI\MessageBox.cpp" />
@@ -386,6 +387,7 @@
     <ClInclude Include="UI\FileIo.h" />
     <ClInclude Include="UI\GameOptionsDialog.h" />
     <ClInclude Include="UI\GameOverDialog.h" />
+    <ClInclude Include="UI\GameViewContainer.h" />
     <ClInclude Include="UI\IconGrid.h" />
     <ClInclude Include="UI\MajorEventAnnouncement.h" />
     <ClInclude Include="UI\MessageBox.h" />

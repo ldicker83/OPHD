@@ -285,6 +285,9 @@
     <ClCompile Include="UI\GameOverDialog.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="UI\GameViewContainer.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
     <ClCompile Include="UI\IconGrid.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -675,6 +678,9 @@
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI\GameOverDialog.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\GameViewContainer.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="UI\IconGrid.h">
