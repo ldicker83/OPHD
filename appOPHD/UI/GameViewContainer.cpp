@@ -5,7 +5,14 @@
 GameViewContainer::GameViewContainer(GameState& gameState) : 
 	UIContainer{{&mFileIoDialog}},
 	mFileIoDialog{gameState.fileLoadDelegate(), gameState.fileSaveDelegate()}
-{}
+{
+	mFileIoDialog.hide();
+	mFileIoDialog.anchored(true);
+
+	const auto rendererCenter = NAS2D::Utility<NAS2D::Renderer>::get().center().to<int>();
+	const auto centerPosition = [&rendererCenter](const Control& control) { return (rendererCenter - control.size() / 2); };
+	mFileIoDialog.position(NAS2D::Point{centerPosition(mFileIoDialog).x, centerPosition(mFileIoDialog).y});
+}
 
 
 void GameViewContainer::update()

@@ -75,9 +75,6 @@ void MapViewState::initUi()
 	mFactoryProduction.position(NAS2D::Point{renderer.center().x - mFactoryProduction.size().x / 2.0f, 175.0f});
 	mFactoryProduction.hide();
 
-	mFileIoDialog.anchored(true);
-	mFileIoDialog.hide();
-
 	const auto populationPanelX = std::min(675, renderer.size().x - mPopulationPanel.size().x);
 	mPopulationPanel.position({populationPanelX, constants::ResourceIconSize + 4 + constants::MarginTight});
 
@@ -231,7 +228,6 @@ void MapViewState::setupUiPositions(NAS2D::Vector<int> size)
 	const auto centerPosition = [&rendererCenter](const Control& control) { return (rendererCenter - control.size() / 2); };
 
 	// Anchored window positions
-	mFileIoDialog.position(NAS2D::Point{centerPosition(mFileIoDialog).x, 50});
 	mCheatMenu.position(NAS2D::Point{centerPosition(mCheatMenu).x, centerPosition(mCheatMenu).y});
 	mGameOverDialog.position(centerPosition(mGameOverDialog) - NAS2D::Vector{0, 100});
 	mAnnouncement.position(centerPosition(mAnnouncement) - NAS2D::Vector{0, 100});
