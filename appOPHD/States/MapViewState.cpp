@@ -557,11 +557,6 @@ void MapViewState::onMouseDown(NAS2D::MouseButton button, NAS2D::Point<int> posi
 
 	if (button == NAS2D::MouseButton::Left)
 	{
-		if (mTooltipSystemButton.area().contains(MOUSE_COORDS))
-		{
-			onSystemMenu();
-		}
-
 		const auto oldDepth = mMapView->currentDepth();
 		mNavControl->onClick(MOUSE_COORDS);
 		if (oldDepth != mMapView->currentDepth())
@@ -732,12 +727,6 @@ void MapViewState::onClickMap()
 	}
 }
 
-
-void MapViewState::onSystemMenu()
-{
-	mGameOptionsDialog.show();
-	resetUi();
-}
 
 /**
 * Handle side effects of changing depth view

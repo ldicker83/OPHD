@@ -152,8 +152,6 @@ private:
 
 	void onClickMap();
 
-	void onSystemMenu();
-
 	// ROBOT EVENT HANDLERS
 	void onDozerTaskComplete(Robot& robot);
 	void onDiggerTaskComplete(Robot& robot);
@@ -351,7 +349,6 @@ private:
 	Button mBtnTogglePoliceOverlay;
 
 	// Bare Control's use for ToolTips
-	Control mTooltipSystemButton;
 	Control mTooltipCurrentTurns;
 
 	ToolTip mToolTip;
