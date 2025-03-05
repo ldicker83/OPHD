@@ -271,8 +271,6 @@ private:
 
 	void onNotificationClicked(const NotificationArea::Notification&);
 
-	void onOpenSaveGameDialog();
-	void onOpenLoadGameDialog();
 	void onGameOver();
 
 	void onStructuresSelectionChange(const IconGrid::Item*);

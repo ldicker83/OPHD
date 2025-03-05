@@ -84,10 +84,7 @@ void MapViewState::initUi()
 	mGameOverDialog.returnToMainMenu().connect({this, &MapViewState::onGameOver});
 	mGameOverDialog.hide();
 
-	mGameOptionsDialog.saveGameDialogButtonSignal().connect({this, &MapViewState::onOpenSaveGameDialog});
-	mGameOptionsDialog.loadGameDialogButtonSignal().connect({this, &MapViewState::onOpenLoadGameDialog});
 	mGameOptionsDialog.returnToMainMenuButtonSignal().connect({this, &MapViewState::onGameOver});
-	mGameOptionsDialog.hide();
 
 	mAnnouncement.hide();
 	mMineOperationsWindow.hide();
@@ -604,29 +601,6 @@ void MapViewState::onDiggerSelectionDialog(Direction direction, Tile& tile)
 }
 
 
-/**
- * Click handler for the main menu Save Game button.
- */
-void MapViewState::onOpenSaveGameDialog()
-{
-	mGameOptionsDialog.hide();
-	mFileIoDialog.showSave(constants::SaveGamePath);
-}
-
-
-/**
- * Click handler for the main menu Load Game button.
- */
-void MapViewState::onOpenLoadGameDialog()
-{
-	mGameOptionsDialog.hide();
-	mFileIoDialog.showOpen(constants::SaveGamePath);
-}
-
-
-/**
- * Click handler for the main menu Return to Main Menu Screen button.
- */
 void MapViewState::onGameOver()
 {
 	mFade.fadeOut(constants::FadeSpeed);

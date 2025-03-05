@@ -3,6 +3,8 @@
 #include "FileIo.h"
 #include "GameOptionsDialog.h"
 
+#include "../Constants/Strings.h"
+
 #include <libControls/UIContainer.h>
 #include <libControls/Button.h>
 
@@ -16,6 +18,8 @@ public:
 	GameOptionsDialog& gameOptionsDialog() { return mGameOptionsDialog; }
 
 private:
+	void showSaveDialog() { mGameOptionsDialog.hide(); mFileIoDialog.showSave(constants::SaveGamePath); }
+	void showLoadDialog() { mGameOptionsDialog.hide(); mFileIoDialog.showOpen(constants::SaveGamePath); }
 	FileIo mFileIoDialog;
 	GameOptionsDialog mGameOptionsDialog;
 };

@@ -6,6 +6,11 @@ GameViewContainer::GameViewContainer(GameState& gameState) :
 	UIContainer{{&mFileIoDialog}},
 	mFileIoDialog{gameState.fileLoadDelegate(), gameState.fileSaveDelegate()}
 {
+	mGameOptionsDialog.hide();
+
+	mGameOptionsDialog.saveGameDialogButtonSignal().connect({this, &GameViewContainer::showSaveDialog});
+	mGameOptionsDialog.loadGameDialogButtonSignal().connect({this, &GameViewContainer::showLoadDialog});
+
 	mFileIoDialog.hide();
 	mFileIoDialog.anchored(true);
 

@@ -213,6 +213,7 @@ NAS2D::State* GameState::update()
 
 	if (mNewMapViewState)
 	{
+		mMapViewState->quit().disconnect({this, &GameState::onQuit});
 		mMapViewState = std::move(mNewMapViewState);
 		initializeMapViewState();
 	}
