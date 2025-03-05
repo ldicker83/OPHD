@@ -31,8 +31,8 @@ public:
 	State* update() override;
 
 	MainReportsUiState& mainReportsState() { return *mMainReportsState; }
-	FileIo& fileIoDialog() { return mGameViewContainer.fileIoDialog(); }
-	FileIo::FileLoadDelegate fileLoadDelegate() { return {this, &GameState::onLoadGame}; }
+	GameViewContainer& gameViewContainer() { return mGameViewContainer; }
+	FileIo::FileSaveDelegate fileLoadDelegate() { return {this, &GameState::onLoadGame}; }
 	FileIo::FileSaveDelegate fileSaveDelegate() { return {this, &GameState::onSaveGame}; }
 
 protected:

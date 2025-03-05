@@ -21,6 +21,7 @@
 #include "../UI/MessageBox.h"
 #include "../UI/NavControl.h"
 #include "../UI/CheatMenu.h"
+#include "../UI/GameViewContainer.h"
 
 #include <libOPHD/DirectionOffset.h>
 #include <libOPHD/EnumDirection.h>
@@ -401,11 +402,13 @@ void MapViewState::drawUI()
 	mStructures.update();
 
 	// Windows
-	mFileIoDialog.update();
 	mGameOptionsDialog.update();
 	mWindowStack.update();
 
 	if (!modalUiElementDisplayed()) { mToolTip.update(); }
+
+	// Game State UI Elements
+	mGameViewContainer.update();
 }
 
 
