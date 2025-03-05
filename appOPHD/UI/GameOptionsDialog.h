@@ -15,7 +15,6 @@ public:
 
 	ClickSignal::Source& saveGameDialogButtonSignal() { return mSignalSaveDialog; }
 	ClickSignal::Source& loadGameDialogButtonSignal() { return mSignalLoadDialog; }
-	ClickSignal::Source& returnToGameButtonSignal() { return mSignalReturn; }
 	ClickSignal::Source& returnToMainMenuButtonSignal() { return mSignalClose; }
 
 private:
@@ -40,6 +39,5 @@ private:
 
 	ClickSignal mSignalSaveDialog;
 	ClickSignal mSignalLoadDialog;
-	ClickSignal mSignalReturn;
 	ClickSignal mSignalClose;
 };

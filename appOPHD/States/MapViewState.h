@@ -273,7 +273,6 @@ private:
 
 	void onOpenSaveGameDialog();
 	void onOpenLoadGameDialog();
-	void onReturnToGame();
 	void onGameOver();
 
 	void onStructuresSelectionChange(const IconGrid::Item*);

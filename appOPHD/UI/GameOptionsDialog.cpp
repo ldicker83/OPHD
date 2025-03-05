@@ -64,7 +64,7 @@ void GameOptionsDialog::onHelp()
 
 void GameOptionsDialog::onReturn()
 {
-	mSignalReturn();
+	hide();
 }
 
 void GameOptionsDialog::onClose()
