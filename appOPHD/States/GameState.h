@@ -34,6 +34,8 @@ public:
 	GameViewContainer& gameViewContainer() { return mGameViewContainer; }
 	FileIo::FileSaveDelegate fileLoadDelegate() { return {this, &GameState::onLoadGame}; }
 	FileIo::FileSaveDelegate fileSaveDelegate() { return {this, &GameState::onSaveGame}; }
+	using ReturnToMainMenuDelegate = NAS2D::Delegate<void()>;
+	ReturnToMainMenuDelegate onReturnToMainMenuDelegate();
 
 protected:
 	void initializeGameState();

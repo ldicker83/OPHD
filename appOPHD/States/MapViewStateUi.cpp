@@ -84,8 +84,6 @@ void MapViewState::initUi()
 	mGameOverDialog.returnToMainMenu().connect({this, &MapViewState::onGameOver});
 	mGameOverDialog.hide();
 
-	mGameOptionsDialog.returnToMainMenuButtonSignal().connect({this, &MapViewState::onGameOver});
-
 	mAnnouncement.hide();
 	mMineOperationsWindow.hide();
 	mWarehouseInspector.hide();

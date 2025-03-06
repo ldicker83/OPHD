@@ -248,8 +248,6 @@ MapViewState::~MapViewState()
 	eventHandler.windowResized().disconnect({this, &MapViewState::onWindowResized});
 
 	NAS2D::Utility<std::map<class MineFacility*, Route>>::get().clear();
-
-	mGameOptionsDialog.returnToMainMenuButtonSignal().disconnect({this, &MapViewState::onGameOver});
 }
 
 

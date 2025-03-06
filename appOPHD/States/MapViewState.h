@@ -131,6 +131,8 @@ public:
 
 	void save(const std::string& filePath);
 
+	void onGameOver();
+
 private:
 	void onDeactivate() override;
 	void onActivate() override;
@@ -268,8 +270,6 @@ private:
 	void onTogglePoliceOverlay();
 
 	void onNotificationClicked(const NotificationArea::Notification&);
-
-	void onGameOver();
 
 	void onStructuresSelectionChange(const IconGrid::Item*);
 	void onConnectionsSelectionChange(const IconGrid::Item*);

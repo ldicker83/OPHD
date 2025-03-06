@@ -11,6 +11,7 @@ GameViewContainer::GameViewContainer(GameState& gameState) :
 
 	mGameOptionsDialog.saveGameDialogButtonSignal().connect({this, &GameViewContainer::showSaveDialog});
 	mGameOptionsDialog.loadGameDialogButtonSignal().connect({this, &GameViewContainer::showLoadDialog});
+	mGameOptionsDialog.returnToMainMenuButtonSignal().connect(gameState.onReturnToMainMenuDelegate());
 
 	mFileIoDialog.hide();
 	mFileIoDialog.anchored(true);
