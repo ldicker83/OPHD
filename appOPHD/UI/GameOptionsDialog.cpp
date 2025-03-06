@@ -10,12 +10,12 @@ GameOptionsDialog::GameOptionsDialog() :
 	btnSave{"Save current game", {this, &GameOptionsDialog::onSave}},
 	btnLoad{"Load a saved game", {this, &GameOptionsDialog::onLoad}},
 	btnHelp{"Help", {this, &GameOptionsDialog::onHelp}},
-	btnReturn{"Return to current game", {this, &GameOptionsDialog::onReturn}},
-	btnClose{"Return to Main Menu", {this, &GameOptionsDialog::onClose}}
+	btnReturn{"Return to current game", {this, &GameOptionsDialog::onReturnToGame}},
+	btnReturnToMainMenu{"Return to Main Menu", {this, &GameOptionsDialog::onReturnToMainMenu}}
 {
 	position({0, 0});
 
-	const auto buttons = std::array{&btnSave, &btnLoad, &btnHelp, &btnReturn, &btnClose};
+	const auto buttons = std::array{&btnSave, &btnLoad, &btnHelp, &btnReturn, &btnReturnToMainMenu};
 	auto position = mRect.position + NAS2D::Vector{buttonHorizontalMargin, buttonHeight};
 	for (auto button : buttons)
 	{
@@ -36,7 +36,7 @@ void GameOptionsDialog::onEnableChange()
 	btnLoad.enabled(enabled());
 	btnHelp.enabled(enabled());
 	btnReturn.enabled(enabled());
-	btnClose.enabled(enabled());
+	btnReturnToMainMenu.enabled(enabled());
 }
 
 
@@ -62,12 +62,12 @@ void GameOptionsDialog::onHelp()
 	shellOpenPath("https://wiki.outpost2.net/doku.php?id=outposthd:how_to_play");
 }
 
-void GameOptionsDialog::onReturn()
+void GameOptionsDialog::onReturnToGame()
 {
 	hide();
 }
 
-void GameOptionsDialog::onClose()
+void GameOptionsDialog::onReturnToMainMenu()
 {
-	mSignalClose();
+	mSignalReturnToMainMenu();
 }

@@ -15,7 +15,7 @@ public:
 
 	ClickSignal::Source& saveGameDialogButtonSignal() { return mSignalSaveDialog; }
 	ClickSignal::Source& loadGameDialogButtonSignal() { return mSignalLoadDialog; }
-	ClickSignal::Source& returnToMainMenuButtonSignal() { return mSignalClose; }
+	ClickSignal::Source& returnToMainMenuButtonSignal() { return mSignalReturnToMainMenu; }
 
 private:
 	const int buttonHeight = 25;
@@ -26,8 +26,8 @@ private:
 	void onLoad();
 	void onSave();
 	void onHelp();
-	void onReturn();
-	void onClose();
+	void onReturnToGame();
+	void onReturnToMainMenu();
 
 	void onEnableChange() override;
 
@@ -35,9 +35,9 @@ private:
 	Button btnLoad;
 	Button btnHelp;
 	Button btnReturn;
-	Button btnClose;
+	Button btnReturnToMainMenu;
 
 	ClickSignal mSignalSaveDialog;
 	ClickSignal mSignalLoadDialog;
-	ClickSignal mSignalClose;
+	ClickSignal mSignalReturnToMainMenu;
 };
