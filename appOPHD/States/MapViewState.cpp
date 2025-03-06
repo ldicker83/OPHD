@@ -172,14 +172,6 @@ const std::map<Difficulty, int> MapViewState::GracePeriod
 	{Difficulty::Hard, 15}
 };
 
-const std::map<Difficulty, int> MapViewState::ColonyShipDeorbitMoraleLossMultiplier
-{
-	{Difficulty::Beginner, 1},
-	{Difficulty::Easy, 3},
-	{Difficulty::Medium, 6},
-	{Difficulty::Hard, 10}
-};
-
 
 MapViewState::MapViewState(GameState& gameState, const std::string& savegame) :
 	mCrimeRateUpdate{mDifficulty},
