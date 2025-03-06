@@ -226,6 +226,7 @@
     <ClCompile Include="Resources.cpp" />
     <ClCompile Include="RobotPool.cpp" />
     <ClCompile Include="ShellOpenPath.cpp" />
+    <ClCompile Include="States\ColonyShip.cpp" />
     <ClCompile Include="States\CrimeExecution.cpp" />
     <ClCompile Include="States\CrimeRateUpdate.cpp" />
     <ClCompile Include="States\GameState.cpp" />
@@ -361,6 +362,7 @@
     <ClInclude Include="Resources.h" />
     <ClInclude Include="RobotPool.h" />
     <ClInclude Include="ShellOpenPath.h" />
+    <ClInclude Include="States\ColonyShip.h" />
     <ClInclude Include="States\CrimeExecution.h" />
     <ClInclude Include="States\CrimeRateUpdate.h" />
     <ClInclude Include="States\GameState.h" />
