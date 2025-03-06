@@ -18,6 +18,7 @@ GameViewContainer::GameViewContainer(GameState& gameState) :
 	const auto rendererCenter = NAS2D::Utility<NAS2D::Renderer>::get().center().to<int>();
 	const auto centerPosition = [&rendererCenter](const Control& control) { return (rendererCenter - control.size() / 2); };
 	mFileIoDialog.position(NAS2D::Point{centerPosition(mFileIoDialog).x, centerPosition(mFileIoDialog).y});
+	mGameOptionsDialog.position(NAS2D::Point{centerPosition(mGameOptionsDialog).x, centerPosition(mGameOptionsDialog).y});
 
 	constexpr auto hudHeight = constants::ResourceIconSize + constants::MarginTight * 2;
 	const auto rendererSize = NAS2D::Utility<NAS2D::Renderer>::get().size();

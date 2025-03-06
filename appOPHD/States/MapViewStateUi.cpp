@@ -224,7 +224,6 @@ void MapViewState::setupUiPositions(NAS2D::Vector<int> size)
 	mCheatMenu.position(NAS2D::Point{centerPosition(mCheatMenu).x, centerPosition(mCheatMenu).y});
 	mGameOverDialog.position(centerPosition(mGameOverDialog) - NAS2D::Vector{0, 100});
 	mAnnouncement.position(centerPosition(mAnnouncement) - NAS2D::Vector{0, 100});
-	mGameOptionsDialog.position(centerPosition(mGameOptionsDialog) - NAS2D::Vector{0, 100});
 
 	mDiggerDirection.position(NAS2D::Point{centerPosition(mDiggerDirection).x, size.y / 2 - 125});
 
@@ -279,7 +278,6 @@ void MapViewState::unhideUi()
 	mConnections.show();
 
 	mGameOverDialog.enabled(true);
-	mGameOptionsDialog.enabled(true);
 }
 
 
@@ -391,7 +389,6 @@ void MapViewState::drawUI()
 	mStructures.update();
 
 	// Windows
-	mGameOptionsDialog.update();
 	mWindowStack.update();
 
 	if (!modalUiElementDisplayed()) { mToolTip.update(); }
