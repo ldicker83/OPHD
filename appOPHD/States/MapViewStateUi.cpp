@@ -5,6 +5,7 @@
 // ==================================================================================
 
 #include "MapViewState.h"
+#include "ColonyShip.h"
 #include "MapViewStateHelper.h"
 
 #include "MainMenuState.h"
@@ -335,8 +336,8 @@ void MapViewState::populateStructureMenu()
 		fillList(mConnections, mStructureTracker.surfaceTubes());
 
 		// Special case code, not thrilled with this
-		if (mLandersColonist > 0) { mStructures.addItem({constants::ColonistLander, 2, StructureID::SID_COLONIST_LANDER}); }
-		if (mLandersCargo > 0) { mStructures.addItem({constants::CargoLander, 1, StructureID::SID_CARGO_LANDER}); }
+		if (mColonyShip.colonistLanders() > 0) { mStructures.addItem({constants::ColonistLander, 2, StructureID::SID_COLONIST_LANDER}); }
+		if (mColonyShip.cargoLanders() > 0) { mStructures.addItem({constants::CargoLander, 1, StructureID::SID_CARGO_LANDER}); }
 	}
 	else
 	{

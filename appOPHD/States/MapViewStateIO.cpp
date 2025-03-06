@@ -5,6 +5,7 @@
 // ==================================================================================
 
 #include "MapViewState.h"
+#include "ColonyShip.h"
 
 #include "MapViewStateHelper.h"
 
@@ -168,8 +169,8 @@ void MapViewState::save(const std::string& filePath)
 		{{
 			{"morale", mMorale.currentMorale()},
 			{"prev_morale", mMorale.previousMorale()},
-			{"colonist_landers", mLandersColonist},
-			{"cargo_landers", mLandersCargo},
+			{"colonist_landers", mColonyShip.colonistLanders()},
+			{"cargo_landers", mColonyShip.cargoLanders()},
 			{"turn_number_of_landing", mTurnNumberOfLanding},
 			{"children", population.child},
 			{"students", population.student},
@@ -571,9 +572,6 @@ void MapViewState::readPopulation(NAS2D::Xml::XmlElement* element)
 		mPopulation = {};
 
 		const auto dictionary = NAS2D::attributesToDictionary(*element);
-
-		mLandersColonist = dictionary.get<int>("colonist_landers");
-		mLandersCargo = dictionary.get<int>("cargo_landers");
 
 		mMorale = Morale(dictionary.get<int>("morale"), dictionary.get<int>("prev_morale"));
 
