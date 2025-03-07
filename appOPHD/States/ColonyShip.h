@@ -16,6 +16,8 @@ ColonyShipData colonyShipDataFromFile (const std::string&);
 
 enum class Difficulty;
 class GameState;
+class WindowStack;
+class MajorEventAnnouncement;
 
 class ColonyShip
 {
@@ -36,6 +38,7 @@ public:
 	void onDeployColonistLander() { --mColonistLanders; }
 	void onDeployCargoLander() { --mCargoLanders; }
 	bool crashed() const { return mCrashed; }
+	void updateColonyShip(Difficulty&, Morale&, WindowStack&, MajorEventAnnouncement&);
 
 private:
 	ColonyShipCrashEffects colonyShipCrashEffects(Difficulty);

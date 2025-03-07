@@ -8,6 +8,7 @@
 #include <NAS2D/ParserHelper.h>
 
 #include <libOPHD/EnumDifficulty.h>
+#include <libControls/WindowStack.h>
 
 #include <map>
 #include <stdexcept>
@@ -73,6 +74,26 @@ ColonyShip::ColonyShip(const ColonyShipData& colonyShipData) :
 	mTurnsOfManeuveringFuel{colonyShipData.turnsOfManeuveringFuel},
 	mCrashed{colonyShipData.crashed}
 {}
+
+
+void ColonyShip::updateColonyShip(Difficulty& difficulty, Morale& morale, WindowStack& windowStack, MajorEventAnnouncement& announcement)
+{
+	if (mCrashed) { return; }
+
+	if (mTurnsOfManeuveringFuel > 0) { --mTurnsOfManeuveringFuel; }
+
+	if (mTurnsOfManeuveringFuel == 0)
+	{
+		auto effects = colonyShipCrashEffects(difficulty);
+		mColonistLanders = 0;
+		mCargoLanders = 0;
+		mCrashed = true;
+		morale.journalMoraleChanges(effects.moraleChangeEntries);
+		windowStack.bringToFront(&announcement);
+		announcement.announcement(effects.announcementType);
+		announcement.show();
+	}
+}
 
 
 ColonyShip::ColonyShipCrashEffects ColonyShip::colonyShipCrashEffects(Difficulty difficulty)
