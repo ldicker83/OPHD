@@ -60,3 +60,18 @@ ColonyShip::ColonyShip(const ColonyShipData& colonyShipData) :
 	mTurnsOfManeuveringFuel{colonyShipData.turnsOfManeuveringFuel},
 	mCrashed{colonyShipData.crashed}
 {}
+
+
+MajorEventAnnouncement::AnnouncementType ColonyShip::colonyShipCrashAnnouncement(const int colonistLanders, const int cargoLanders)
+{
+	if (colonistLanders && cargoLanders)
+		return MajorEventAnnouncement::AnnouncementType::ColonyShipCrashWithColonistsAndCargo;
+
+	if (colonistLanders)
+		return MajorEventAnnouncement::AnnouncementType::ColonyShipCrashWithColonists;
+
+	if (cargoLanders)
+		return MajorEventAnnouncement::AnnouncementType::ColonyShipCrashWithCargo;
+
+	return MajorEventAnnouncement::AnnouncementType::ColonyShipCrash;
+}

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../UI/MajorEventAnnouncement.h"
+
 #include <string>
 
 struct ColonyShipData
@@ -29,6 +31,7 @@ public:
 	bool crashed() const { return mCrashed; }
 
 private:
+	MajorEventAnnouncement::AnnouncementType colonyShipCrashAnnouncement(const int, const int);
 	int mColonistLanders = 2;
 	int mCargoLanders = 2;
 	int mTurnsOfManeuveringFuel = 25;
