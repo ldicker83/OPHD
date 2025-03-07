@@ -2,7 +2,7 @@
 
 #include "../UI/MajorEventAnnouncement.h"
 
-#include <string>
+#include <libOPHD/Population/Morale.h>
 
 struct ColonyShipData
 {
@@ -32,6 +32,15 @@ public:
 
 private:
 	MajorEventAnnouncement::AnnouncementType colonyShipCrashAnnouncement(const int, const int);
+
+	struct LanderCrashData
+	{
+		std::string description = "";
+		int numberOfLanders;
+		int landerMoraleLossMultiplier;
+	};
+	MoraleChangeEntry colonyShipCrashMoraleChangeEntry(LanderCrashData, Difficulty);
+
 	int mColonistLanders = 2;
 	int mCargoLanders = 2;
 	int mTurnsOfManeuveringFuel = 25;

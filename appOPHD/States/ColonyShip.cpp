@@ -7,8 +7,18 @@
 #include <NAS2D/Filesystem.h>
 #include <NAS2D/ParserHelper.h>
 
+#include <libOPHD/EnumDifficulty.h>
+
+#include <map>
+#include <stdexcept>
 namespace
 {
+	const std::map<Difficulty, int> DifficultyDeorbitMoraleLossMultiplier{
+		{Difficulty::Beginner, 1},
+		{Difficulty::Easy, 3},
+		{Difficulty::Medium, 6},
+		{Difficulty::Hard, 10}};
+
 	void setLanders(ColonyShipData& colonyShipData, NAS2D::Xml::XmlElement* element)
 	{
 		if (element)
@@ -74,4 +84,16 @@ MajorEventAnnouncement::AnnouncementType ColonyShip::colonyShipCrashAnnouncement
 		return MajorEventAnnouncement::AnnouncementType::ColonyShipCrashWithCargo;
 
 	return MajorEventAnnouncement::AnnouncementType::ColonyShipCrash;
+}
+
+
+MoraleChangeEntry ColonyShip::colonyShipCrashMoraleChangeEntry(LanderCrashData landerCrashData, Difficulty difficulty)
+{
+	auto difficultyMultiplier = DifficultyDeorbitMoraleLossMultiplier.find(difficulty);
+	if (difficultyMultiplier != DifficultyDeorbitMoraleLossMultiplier.end())
+	{
+		return MoraleChangeEntry{landerCrashData.description, -1 * landerCrashData.numberOfLanders * landerCrashData.landerMoraleLossMultiplier * difficultyMultiplier->second};
+	}
+
+	throw std::out_of_range("Invalid difficulty level");
 }
