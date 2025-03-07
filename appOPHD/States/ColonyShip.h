@@ -20,6 +20,13 @@ class GameState;
 class ColonyShip
 {
 public:
+	using MoraleChangeEntries = std::vector<MoraleChangeEntry>;
+	struct ColonyShipCrashEffects
+	{
+		MoraleChangeEntries moraleChangeEntries = MoraleChangeEntries{};
+		MajorEventAnnouncement::AnnouncementType announcementType = MajorEventAnnouncement::AnnouncementType::ColonyShipCrash;
+	};
+
 	ColonyShip();
 	ColonyShip(const ColonyShipData&);
 
@@ -31,6 +38,7 @@ public:
 	bool crashed() const { return mCrashed; }
 
 private:
+	ColonyShipCrashEffects colonyShipCrashEffects(Difficulty);
 	MajorEventAnnouncement::AnnouncementType colonyShipCrashAnnouncement(const int, const int);
 
 	struct LanderCrashData

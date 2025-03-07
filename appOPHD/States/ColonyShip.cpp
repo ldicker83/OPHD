@@ -19,6 +19,9 @@ namespace
 		{Difficulty::Medium, 6},
 		{Difficulty::Hard, 10}};
 
+	constexpr inline int ColonistsPerLander = 50;
+	constexpr inline int CargoMoraleLossPerLander = 25;
+
 	void setLanders(ColonyShipData& colonyShipData, NAS2D::Xml::XmlElement* element)
 	{
 		if (element)
@@ -70,6 +73,16 @@ ColonyShip::ColonyShip(const ColonyShipData& colonyShipData) :
 	mTurnsOfManeuveringFuel{colonyShipData.turnsOfManeuveringFuel},
 	mCrashed{colonyShipData.crashed}
 {}
+
+
+ColonyShip::ColonyShipCrashEffects ColonyShip::colonyShipCrashEffects(Difficulty difficulty)
+{
+	ColonyShipCrashEffects effects;
+	effects.announcementType = colonyShipCrashAnnouncement(mColonistLanders, mCargoLanders);
+	effects.moraleChangeEntries.push_back(colonyShipCrashMoraleChangeEntry(LanderCrashData{"Colonists lost in crash:", mColonistLanders, ColonistsPerLander}, difficulty));
+	effects.moraleChangeEntries.push_back(colonyShipCrashMoraleChangeEntry(LanderCrashData{"Cargo lost in crash:", mCargoLanders, CargoMoraleLossPerLander}, difficulty));
+	return effects;
+}
 
 
 MajorEventAnnouncement::AnnouncementType ColonyShip::colonyShipCrashAnnouncement(const int colonistLanders, const int cargoLanders)
