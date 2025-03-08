@@ -193,7 +193,8 @@ MapViewState::MapViewState(GameState& gameState, const std::string& savegame) :
 	mFileIoDialog{gameState.fileIoDialog()},
 	mPopulationPanel{mPopulation, mPopulationPool, mMorale},
 	mResourceInfoBar{mResourcesCount, mPopulation, mMorale, mFood},
-	mRobotDeploymentSummary{mRobotPool}
+	mRobotDeploymentSummary{mRobotPool},
+	mColonyShip{gameState.colonyShip()}
 {
 	ccLocation() = CcNotPlaced;
 	NAS2D::Utility<NAS2D::EventHandler>::get().windowResized().connect({this, &MapViewState::onWindowResized});
@@ -219,7 +220,8 @@ MapViewState::MapViewState(GameState& gameState, const Planet::Attributes& plane
 	mRobotDeploymentSummary{mRobotPool},
 	mMiniMap{std::make_unique<MiniMap>(*mMapView, *mTileMap, mRobotList, planetAttributes.mapImagePath)},
 	mDetailMap{std::make_unique<DetailMap>(*mMapView, *mTileMap, planetAttributes.tilesetPath)},
-	mNavControl{std::make_unique<NavControl>(*mMapView)}
+	mNavControl{std::make_unique<NavControl>(*mMapView)},
+	mColonyShip{gameState.colonyShip()}
 {
 	setMeanSolarDistance(mPlanetAttributes.meanSolarDistance);
 	setPopulationLevel(PopulationLevel::Large);

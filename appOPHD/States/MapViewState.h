@@ -80,6 +80,7 @@ class NavControl;
 class MainReportsUiState;
 class GameState;
 class FileIo;
+class ColonyShip;
 
 
 enum class InsertMode
@@ -400,4 +401,6 @@ private:
 	std::unique_ptr<NavControl> mNavControl;
 
 	NAS2D::Fade mFade;
+
+	ColonyShip& mColonyShip;
 };
