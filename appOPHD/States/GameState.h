@@ -3,6 +3,8 @@
 #include "Planet.h"
 #include "MapViewState.h"
 #include "MainReportsUiState.h"
+#include "ColonyShip.h"
+
 #include "../UI/FileIo.h"
 
 #include <NAS2D/State.h>
@@ -31,6 +33,7 @@ public:
 
 	MainReportsUiState& mainReportsState() { return mMainReportsState; }
 	FileIo& fileIoDialog() { return mFileIoDialog; }
+	ColonyShip& colonyShip() { return mColonyShip; }
 
 protected:
 	void initializeGameState();
@@ -54,6 +57,7 @@ protected:
 private:
 	MainReportsUiState mMainReportsState;
 	MapViewState mMapViewState;
+	ColonyShip mColonyShip;
 	Wrapper* mActiveState = nullptr;
 	NAS2D::State* mReturnState = this;
 	NAS2D::Fade mFade;

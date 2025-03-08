@@ -80,6 +80,7 @@ class NavControl;
 class MainReportsUiState;
 class GameState;
 class FileIo;
+class ColonyShip;
 
 
 enum class InsertMode
@@ -111,8 +112,6 @@ public:
 	MapViewState(GameState& gameState, const std::string& savegame);
 	MapViewState(GameState& gameState, const Planet::Attributes& planetAttributes, Difficulty selectedDifficulty);
 	~MapViewState() override;
-
-	void setPopulationLevel(PopulationLevel popLevel);
 
 	ReportsUiSignal::Source& showReportsUi() { return mReportsUiSignal; }
 	QuitSignal::Source& quit() { return mQuitSignal; }
@@ -204,7 +203,6 @@ private:
 	void updateResearch();
 
 	// TURN LOGIC
-	void checkColonyShip();
 	void checkWarehouseCapacity();
 	void nextTurn();
 	void updatePopulation();
@@ -301,18 +299,12 @@ private:
 	// Length of "honeymoon period" of no crime/morale updates after landing, in turns
 	static const std::map<Difficulty, int> GracePeriod;
 
-	// Morale loss multiplier on colonist death due to colony ship de-orbit
-	static const std::map<Difficulty, int> ColonyShipDeorbitMoraleLossMultiplier;
-
 	// MISCELLANEOUS
 	int mTurnCount = 0;
 
 	int mTurnNumberOfLanding = constants::ColonyShipOrbitTime; /**< First turn that human colonists landed. */
 
 	Morale mMorale;
-
-	int mLandersColonist = 0;
-	int mLandersCargo = 0;
 
 	int mResidentialCapacity = 0;
 
@@ -400,4 +392,6 @@ private:
 	std::unique_ptr<NavControl> mNavControl;
 
 	NAS2D::Fade mFade;
+
+	ColonyShip& mColonyShip;
 };

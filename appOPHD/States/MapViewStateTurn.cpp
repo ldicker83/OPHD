@@ -3,6 +3,8 @@
 // ==================================================================================
 
 #include "MapViewState.h"
+#include "ColonyShip.h"
+
 #include "MapViewStateHelper.h"
 
 #include "Route.h"
@@ -414,37 +416,6 @@ void MapViewState::updateResources()
 }
 
 
-/**
- * Check for colony ship deorbiting; if any colonists are remaining, kill
- * them and reduce morale by an appropriate amount.
- */
-void MapViewState::checkColonyShip()
-{
-	if (mTurnCount == constants::ColonyShipOrbitTime)
-	{
-		if (mLandersColonist > 0 || mLandersCargo > 0)
-		{
-			mMorale.journalMoraleChange({"Deorbit Disaster!", -(mLandersColonist * 50) * ColonyShipDeorbitMoraleLossMultiplier.at(mDifficulty)});
-
-			mLandersColonist = 0;
-			mLandersCargo = 0;
-
-			populateStructureMenu();
-
-			mWindowStack.bringToFront(&mAnnouncement);
-			mAnnouncement.announcement(MajorEventAnnouncement::AnnouncementType::ColonyShipCrashWithColonists);
-			mAnnouncement.show();
-		}
-		else
-		{
-			mWindowStack.bringToFront(&mAnnouncement);
-			mAnnouncement.announcement(MajorEventAnnouncement::AnnouncementType::ColonyShipCrash);
-			mAnnouncement.show();
-		}
-	}
-}
-
-
 void MapViewState::checkWarehouseCapacity()
 {
 	StructureManager& structureManager = NAS2D::Utility<StructureManager>::get();
@@ -780,21 +751,20 @@ void MapViewState::nextTurn()
 
 	updateResearch();
 
-	populateRobotMenu();
-	populateStructureMenu();
-
-	checkColonyShip();
+	mColonyShip.updateColonyShip(mDifficulty, mMorale, mWindowStack, mAnnouncement);
 	checkWarehouseCapacity();
 
 	mMineOperationsWindow.updateTruckAvailability();
 
 	// Check for Game Over conditions
-	if (mPopulation.getPopulations().size() <= 0 && mLandersColonist == 0)
+	if (mPopulation.getPopulations().size() <= 0 && mColonyShip.colonistLanders() == 0)
 	{
 		hideUi();
 		mGameOverDialog.show();
 	}
 
+	populateRobotMenu();
+	populateStructureMenu();
 
 	mMorale.commitMoraleChanges();
 

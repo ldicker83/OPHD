@@ -201,6 +201,9 @@
     <ClCompile Include="ShellOpenPath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\ColonyShip.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
     <ClCompile Include="States\CrimeExecution.cpp">
       <Filter>Source Files\States</Filter>
     </ClCompile>
@@ -601,6 +604,9 @@
     </ClInclude>
     <ClInclude Include="ShellOpenPath.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\ColonyShip.h">
+      <Filter>Header Files\States</Filter>
     </ClInclude>
     <ClInclude Include="States\CrimeExecution.h">
       <Filter>Header Files\States</Filter>
