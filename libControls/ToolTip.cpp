@@ -32,6 +32,93 @@ namespace
 		});
 		return maxWidthStringSize;
 	}
+
+
+	// Returns a vector of pairs <indexes where the wraps should occur> and <if a truncation occurred>.
+	// Wraps occur at the last available space before the text width is exceeded.
+	std::vector<std::pair<size_t, bool>> wrapIndexesBreakOnSpace (const std::string& text, const NAS2D::Font& font, int textWidth)
+	{
+		std::vector<std::pair<size_t, bool>> wrapIndexes;
+		size_t wrapIndexOffset = 0;
+		size_t lastSpaceIndex = 0;
+		const int truncationSize = font.size("...").x;
+
+		for (size_t index = 0; index < text.size(); ++index)
+		{
+			if (text[index] == '\n')
+			{
+				wrapIndexOffset = index + 1;
+			}
+
+			if (text[index] == ' ')
+			{
+				lastSpaceIndex = index;
+			}
+
+			if (font.size(text.substr(wrapIndexOffset, index - wrapIndexOffset + 1)).x + truncationSize > textWidth && lastSpaceIndex <= wrapIndexOffset)
+			{
+				wrapIndexes.push_back({index - 1, true});
+
+				// Fast forward the index to the next space
+				while (index < text.size() && text[index] != ' ')
+				{
+					++index;
+				}
+
+				if (index < text.size())
+				{
+					wrapIndexOffset = index + 1;
+					lastSpaceIndex = index;
+				}
+			}
+
+			if (font.size(text.substr(wrapIndexOffset, index - wrapIndexOffset + 1)).x > textWidth && lastSpaceIndex > wrapIndexOffset)
+			{
+				// Rewind index to the last space
+				index = lastSpaceIndex;
+				wrapIndexOffset = index + 1;
+				wrapIndexes.push_back({lastSpaceIndex, false});
+			}
+		}
+
+		return wrapIndexes;
+	};
+
+
+	// Returns a constructed string with line breaks at the last available space before the text width is exceeded.
+	// Lines truncated will attempt to fit and end in "..." but may spill beyond the designated width
+	std::string wrapTextBreakOnSpace(const std::string& text, const NAS2D::Font& font, int textWidth)
+	{
+		auto wrapIndexes = wrapIndexesBreakOnSpace(text, font, textWidth);
+		std::string wrappedText;
+		size_t wrapIndexOffset = 0;
+		for (const auto& [wrapIndex, truncated] : wrapIndexes)
+		{
+			wrappedText += text.substr(wrapIndexOffset, wrapIndex - wrapIndexOffset);
+			if (truncated)
+			{
+				wrappedText += "...";
+				wrapIndexOffset = wrapIndex;
+				while (wrapIndexOffset < text.size() && text[wrapIndexOffset] != ' ')
+				{
+					++wrapIndexOffset;
+				}
+
+				if (wrapIndexOffset < text.size())
+				{
+					wrappedText += '\n';
+					wrapIndexOffset++;
+				}
+			}
+			else
+			{
+				wrappedText += '\n';
+				wrapIndexOffset = wrapIndex + 1;
+			}
+		}
+		wrappedText += text.substr(wrapIndexOffset);
+		return wrappedText;
+	};
 }
 
 
@@ -133,8 +220,27 @@ void ToolTip::draw() const
 		auto linePosition = position() + PaddingSize;
 
 		forEachLine(mFocusedControl->second, [this, &renderer, &linePosition](const std::string& lineStr) {
-			renderer.drawText(mFont, lineStr, linePosition);
-			linePosition.y += mFont.height();
+				renderer.drawText(mFont, lineStr, linePosition);
+				linePosition.y += mFont.height();
 		});
 	}
+}
+
+
+void ToolTip::commandSize(int width, int height)
+{
+	mCommandedWidth = width;
+	mCommandedHeight = height;
+}
+
+
+void ToolTip::commandWidth(int width)
+{
+	mCommandedWidth = width;
+}
+
+
+void ToolTip::commandHeight(int height)
+{
+	mCommandedHeight = height;
 }
